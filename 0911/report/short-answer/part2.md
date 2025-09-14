@@ -12,18 +12,18 @@ c. F69BDC2A  >> 1111 0110 1001 1011 1101 1100 0010 1010
 ## 문제 9  
 **Q:**  What is the unsigned decimal representation of each of the following hexadecimal integers?  
 **A:**  
-a. 3A  >> 16¹*3 + 1*10 = 58  
-b. 1BF  >> 16²*1 + 16¹*11 + 1*15 = 447  
-c. 1001  >> 16³*1 + 1*1 = 4097  
+a. 3A  >> 16¹x3 + 1x10 = 58  
+b. 1BF  >> 16²x1 + 16¹x11 + 1x15 = 447  
+c. 1001  >> 16³x1 + 1x1 = 4097  
 
 ---
 
 ## 문제 10  
 **Q:**  What is the unsigned decimal representation of each of the following hexadecimal integers?  
 **A:**  
-a. 62  >> 16¹*6 + 1*2 = 98  
-b. 4B3  >> 16²*4 + 16¹*11 + 1*3 = 1203  
-c. 29F  >> 16²*2 + 16¹*9 + 1* 15 = 671  
+a. 62  >> 16¹x6 + 1x2 = 98  
+b. 4B3  >> 16²x4 + 16¹x11 + 1x3 = 1203  
+c. 29F  >> 16²x2 + 16¹x9 + 1x15 = 671  
 
 ---
 
