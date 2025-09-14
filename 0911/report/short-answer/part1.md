@@ -9,18 +9,18 @@ MSB는 가장 왼쪽에 있는 비트를 의미한다.
 ---
 
 ## 문제 2  
-**Q:** What is the decimal representation of each of the following unsigned binary integers?
+**Q:** What is the decimal representation of each of the following unsigned binary integers?   
 **A:**  
-a. 00110101  >> 32+16+4+1 = 53
-b. 10010110  >> 128+16+4+2 = 150
-c. 11001100  >> 128+64+8+4 = 204
+a. 00110101  >> 32+16+4+1 = 53  
+b. 10010110  >> 128+16+4+2 = 150  
+c. 11001100  >> 128+64+8+4 = 204  
   
 ---
 
 ## 문제 3  
-**Q:** What is the sum of each pair of binary integers?
+**Q:** What is the sum of each pair of binary integers?  
 **A:**  
-a. 10101111 + 11011011  >> 
+a. 10101111 + 11011011  >> (1)10001010  
 b. 10010111 + 11111111
 c. 01110101 + 10101100
   
