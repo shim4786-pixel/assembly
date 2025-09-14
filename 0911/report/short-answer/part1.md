@@ -48,7 +48,7 @@ d. double quadword  >> 128 bits
 **Q:**  What is the minimum number of binary bits needed to represent each of the following
  unsigned decimal integers?  
 **A:**  
-구하기 위해 '비트 수=⌊log⁡2(𝑁)⌋+1'
+구하기 위해 '비트 수=⌊log⁡2(𝑁)⌋+1'  
 a. 4095  >> 11+1 = 12비트   
 b. 65534  >> 15+1 = 16비트  
 c. 42319  >> 15+1 = 16비트 Short Answer - Part 1 (문제 1~7)
