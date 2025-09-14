@@ -1,4 +1,4 @@
-# 📘 Short Answer - Part 4 (문제 22~28)
+# Short Answer - Part 4 (문제 22~28)
 
 ## 문제 22  
 **Q:**  
