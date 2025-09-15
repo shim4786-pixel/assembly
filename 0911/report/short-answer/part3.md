@@ -52,11 +52,13 @@ b. A49 + 6BD  >> 9+D = 22, 4+B+1 = 16, A+6+1 = 17 >> 1106
 **Q:**  What is the sum of each pair of hexadecimal integers?  
 **A:**  
 16진수의 덧셈이므로 10진수의 덧셈과 똑같이 하되, 합이 16 이상이면 캐리한다.   
-a. 7C4 + 3BE  >> 
-b. B69 + 7AD  >> 
+a. 7C4 + 3BE  >> 4+E = 18, C+B+1 = 24, 7+3+1 = 11 >> B82  
+b. B69 + 7AD  >> 9+D = 22, 6+A+1 = 17, B+7+1 = 19 >> 1316  
 
 ---
 
 ## 문제 21  
-**Q:**  
+**Q:**  What are the hexadecimal and decimal representations of the ASCII character capital B?  
 **A:**  
+ASCII 표에 따르면 대문자 B의 10진수 값은 **66**이다.  
+16진수로 변환하면**42**이다.  
