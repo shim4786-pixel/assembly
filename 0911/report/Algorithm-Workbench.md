@@ -4,7 +4,7 @@
 **Q**: Write a function that receives a string containing a 16-bit binary integer. The function must return the string’s integer value.  
 풀이: 16자리의 2진수 값을 입력받아 10진수 정수로 변환하는 코드를 작성한다.  
 코드:  
-'''c
+'''c  
 #include <stdio.h>
 
 int binaryToInt(const char *binStr){  //문자열 포인터를 받아 정수로 변환하는 함수 
