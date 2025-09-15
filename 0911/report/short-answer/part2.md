@@ -46,11 +46,19 @@ b. -45  >> 45 = 101101 >2의 보수> 1111 1111 1101 0011 = FFD3
 ---
 
 ## 문제 13  
-**Q:**  
+**Q:**  The following 16-bit hexadecimal numbers represent signed integers. Convert each to
+ decimal.  
 **A:**  
+부호 있는 16진수 숫자이므로 MSB를 보아 양수인지 음수인지 확인 후 음수라면 2의 보수를 취해 구한다.  
+a. 6BF9  >> 0110 1011 1111 1001 (양수) >10진수 변환> 27641  
+b. C123  >> 1100 0001 0010 0011 (음수) >2의 보수> 0011 1110 1101 1101 >10진수 변환> -16093  
 
 ---
 
 ## 문제 14  
-**Q:**  
+**Q:**  The following 16-bit hexadecimal numbers represent signed integers. Convert each to
+ decimal.  
 **A:**  
+부호 있는 16진수 숫자이므로 MSB를 보아 양수인지 음수인지 확인 후 음수라면 2의 보수를 취해 구한다.  
+a. 4CD2  >> 0100 1100 1101 0010 (양수) >10진수 변환> 19666  
+b. 8230  >> 1000 0010 0011 0000 (음수) >2의 보수> 
