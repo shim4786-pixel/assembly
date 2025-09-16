@@ -298,9 +298,9 @@ int main(){
 
 ---
 ## 문제 8
-**Q**:  Write a Java program that contains the calculation shown below. Then, use the javap –c command to disassemble your code. Add comments to each line that provide your best guess as to its purpose.
- int Y;
- int X = (Y + 4) * 3;
+**Q**:  Write a Java program that contains the calculation shown below. Then, use the javap –c command to disassemble your code. Add comments to each line that provide your best guess as to its purpose.  
+ int Y;  
+ int X = (Y + 4) * 3;  
 **풀이:**  AI의 도움을 적극적으로 받아 해결하였다. 위의 수식을 포함한 자바 언어를 javap -c로 디어셈블하여 주석을 다는 문제이다.  
 **코드:**  
 ```java
