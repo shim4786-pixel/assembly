@@ -368,7 +368,7 @@ public class ch1.ex8 {
 ## 문제 9
 **Q**:  Devise a way of subtracting unsigned binary integers. Test your technique by subtracting binary
  00000101 from binary 10001000, producing 10000011. Test your technique with at least two
- other sets of integers, in which a smaller value is always subtracted from a larger one.
+ other sets of integers, in which a smaller value is always subtracted from a larger one.  
 **풀이:**  부호없는 2진수 값 두 개를 받아 뺄셈 결과를 도출해야 한다.    
 2진수 숫자의 자리수가 정해지지 않아 위의 문제처럼 문자열을 정수로 하나씩 바꾸어 계산하는 방식을 사용하였다.  
 **코드:**  
