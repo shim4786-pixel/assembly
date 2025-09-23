@@ -24,19 +24,19 @@
 ## 문제 3    
 **Q:** Which flag is set when the result of an unsigned arithmetic operation is too large to fit into the destination?  
 **A:** CF   
-**설명:** 부호 없는 연산에서 자리 올림이 발생하였을 때 설정되는 건 캐리 **플래그(CF)**이다. 이는 레지스터의 크기를 초과할 때 설정된다. 반면, 부호 있는 연산에서는 **오버플로우 플래그(OF)**를 확인해야 한다.   
+**설명:** 부호 없는 연산에서 자리 올림이 발생하였을 때 설정되는 건 캐리 **플래그(CF)** 이다. 이는 레지스터의 크기를 초과할 때 설정된다. 반면, 부호 있는 연산에서는 **오버플로우 플래그(OF)** 를 확인해야 한다.   
 
 ---
 ## 문제 4  
 **Q:** Which flag is set when the result of a signed arithmetic operation is either too large or too small to fit into the destination?   
 **A:** OF    
-**설명:** 부호 있는 연산에서 결과값의 크기가 너무 작거나 크면 **오버플로우 플래그(OF)**가 설정된다.   
+**설명:** 부호 있는 연산에서 결과값의 크기가 너무 작거나 크면 **오버플로우 플래그(OF)** 가 설정된다.   
 
 ---
 ## 문제 6  
 **Q:** Which flag is set when an arithmetic or logical operation generates a negative result?   
 **A:** SF
-**설명:** 산술/논리 연산의 결과가 음수라면 **사인 플래그(SF)**가 설정된다. 이는 결과가 음수임을 나타내는 플래그이다.   
+**설명:** 산술/논리 연산의 결과가 음수라면 **사인 플래그(SF)** 가 설정된다. 이는 결과가 음수임을 나타내는 플래그이다.   
 
 ---
 ## 문제 7  
@@ -47,9 +47,9 @@
 ---
 ## 문제 8  
 **Q:** On a 32-bit processor, how many bits are contained in each floating-point data register?   
-**A:** x87 FPU는 R0~R7까지 각 80비트로 구성됨  
+**A:** x87 FPU는 R0에서 R7까지 각 80비트로 구성됨  
 **설명:** pdf 교재의 12.2 부분을 참조함.   
-32비트라고 해서 부동소수점 레지스터가 32비트인 것은 아니다. 정확한 크기는 부동소수점 아키텍처에 따라 다르겠지만 x87 FPU는 각 80비트로 구성된 R0~R7까지 8개의 레지스터를 가진다.   
+32비트라고 해서 부동소수점 레지스터가 32비트인 것은 아니다. 정확한 크기는 부동소수점 아키텍처에 따라 다르겠지만 x87 FPU는 각 80비트로 구성된 R0에서 R7까지 8개의 레지스터를 가진다.   
 
 ---
 ## 문제 25  
