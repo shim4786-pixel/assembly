@@ -2,32 +2,32 @@
 
 ## 문제 5  
 **Q:** When a register operand size is 32 bits and the REX prefix is used, the R8D register is available for programs to use.   
-**A:**  
-**설명:**  
+**A:** True  
+**설명:** Table 2-1을 보면 오퍼랜드가 32비트일 때, R8D는 사용가능하다.   
 
 ---
 ## 문제 9  
 **Q:** The x86-64 instruction set is backward-compatible with the x86 instruction set.  
-**A:**  
-**설명:**  
+**A:** True   
+**설명:** x86-64 명령어 집합은 기존 x86 명령어 집합을 64비트로 확장한 버전으로, 32비트' 16비트' 8비트' 모두 호환 가능하다.  
 
 ---
 ## 문제 10  
 **Q:** In current 64-bit chip implementations, all 64 bits are used for addressing.    
-**A:**  
-**설명:**  
+**A:** False   
+**설명:** 현재 CPU들은 64비트 전부를 모두 주소 공간으로서 사용하지는 않는다. 48비트만 사용하고 나머지는 48번째 비트에 따라 채운다. 64비트를 모두 사용하면 하드웨어 구현에도 어려운 점이 있고, 충분히 현재 메모리 요구량을 충분히 만족하므로 이렇게 사용한다. 이후, 메모리 요구량이 상승한다면 57, 64비트도 사용가능하도록 확장 가능하다.    
 
 ---
 ## 문제 11  
 **Q:** The Itanium instruction set is completely different from the x86 instruction set.   
-**A:**  
-**설명:**  
+**A:** True 
+**설명:** Itanium은 IA-64 명령어 집합으로 해당 프로세서는 주로 고성능 데이터베이스 및 네트워크 서버에서 사용되며, x86 및 x86-64와는 완전히 다르다.  
 
 ---
 ## 문제 12  
 **Q:** Static RAM is usually less expensive than dynamic RAM.   
-**A:**  
-**설명:**  
+**A:** False   
+**설명:** SRAM은 용량이 작고 속도가 빨라 캐시 메모리에 주로 사용되고, DRAM은 용량이 크고 속도가 비교적 느려 메인 메모리에 주로 사용된다. SRAM이 DRAM보다 비싸다.   
 
 ---
 ## 문제 13  
