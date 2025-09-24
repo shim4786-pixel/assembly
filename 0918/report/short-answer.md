@@ -8,16 +8,14 @@
 ---
 ## 문제 2  
 **Q:** Name at least four CPU status flags.   
-**A:** CF, PF, AF, ZF, SF, TF, IF, OF   
+**A:** CF, PF, AC, ZF, SF, OF   
 **설명:** 다음은 EFLAGS 레지스터의 주요 플래그들이다.   
 1. CF(Carry Flag): 부호 없는 연산에서 자리 올림/내림이 발생하였는지 나타낸다.    
 2. PF(Parity Flag): 연산 결과의 하위 바이트(8비트)에 1이 짝수 개 있으면 설정된다.   
-3. AF(Auxiliary Carry Flag): (Binary-Coded Decimal 연산에서) 하위 4비트에서 자리올림이 발생하였는지 나타낸다.  
+3. AC(Auxiliary Carry Flag): (Binary-Coded Decimal 연산에서) 하위 4비트에서 자리올림이 발생하였는지 나타낸다.  
 4. ZF(Zero Flag): 연산 결과가 0이면 설정된다. 주로 조건 분기, 루프 제어에 사용된다.  
-5. SF(Sign Flag): 연산 결과가 음수라면 설정된다. MSB를 기준으로 판단한다.  
-6. TF(Trap Flag): CPU가 명령어를 하나씩 실행하도록 제어한다. 디버깅시 사용된다.  
-7. IF(Intrrupt Flag): 외부 하드웨어 인터럽트의 허용 여부를 제어한다. 인터럽트가 발생하면 안되는 중요한 작업 시, IF를 0으로 설정해 인터럽트를 잠시 비활성화할 수 있다.  
-8. OF(Overflow Flag): 부호 있는 정수 연산에서 결과가 표현 범위를 초과했을 때(오버플로우) 설정된다.  
+5. SF(Sign Flag): 연산 결과가 음수라면 설정된다. MSB를 기준으로 판단한다.   
+6. OF(Overflow Flag): 부호 있는 정수 연산에서 결과가 표현 범위를 초과했을 때(오버플로우) 설정된다.  
 
 
 ---
@@ -35,7 +33,7 @@
 ---
 ## 문제 6  
 **Q:** Which flag is set when an arithmetic or logical operation generates a negative result?   
-**A:** SF
+**A:** SF  
 **설명:** 산술/논리 연산의 결과가 음수라면 **사인 플래그(SF)** 가 설정된다. 이는 결과가 음수임을 나타내는 플래그이다.   
 
 ---
@@ -64,7 +62,6 @@ BIOS : BIOS는 하드웨어 장치와 직접 통신하는 저수준 서브루틴
 ## 문제 26    
 **Q:** Why do game programs often send their sound output directly to the sound card’s hardware ports?    
 **A:** 속도 최적화, 정밀 제어, 하드웨어 활용 극대화  
-**설명:**  
-게임에서는 적절한 음향 효과를 실시간으로 전달하는 것이 중요하다. 소리가 뒤늦게 들리면 몰입감이 떨어지므로 실시간 처리가 거의 필수적이다. 운영체제를 거치면 과정이 복잡하고 시간 지연이 발생하므로 이러는 점도 있다. 또한 더 빠를 뿐만 아니라, 소리의 정밀한 제어가 가능하기 때문이다.   
+**설명:** 게임에서는 적절한 음향 효과를 실시간으로 전달하는 것이 중요하다. 소리가 뒤늦게 들리면 몰입감이 떨어지므로 실시간 처리가 거의 필수적이다. 운영체제를 거치면 과정이 복잡하고 시간 지연이 발생하므로 이러는 점도 있다. 또한 더 빠를 뿐만 아니라, 소리의 정밀한 제어가 가능하기 때문이다.   
 
 ---
