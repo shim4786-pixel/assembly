@@ -18,12 +18,22 @@ HEX25 = 19h
 ---
 ## 문제 3  
 **Q: Create a data definition for a doubleword that stored it in memory in big endian format.**  
-**A:**
+**A:** DWORD를 빅 엔디안 형식으로 저장하도록 데이터를 정의한다. MASM은 빅 엔디안을 따로 지원하지 않으므로 수동으로 처리한다.  
+```asm
+.data
+big BYTE 12h, 34h, 56h, 78h
+```
 
 ---
 ## 문제 4  
 **Q: Find out if you can declare a variable of type DWORD and assign it a negative value. What does this tell you about the assembler’s type checking?**  
-**A:**
+**A:** DWORD 에 음수값을 넣어 결과를 알아본다.  
+```asm
+mov DWORD PTR DS:[402000], -1
+```
+결과 'FF FF FF FF'로 저장된다.  
+DWORD는 부호 없는 32비트 정수형이기 때문에 음수를 할당하면 2의 보수 형태로 변환되어 저장된다.  
+대부분의 어셈블러는 타입을 엄격하게 검사하지 않고, 오류를 띄우지 않기 때문에 프로그래머의 주의가 필요함을 알 수 있다.  
 
 ---
 ## 문제 5    
