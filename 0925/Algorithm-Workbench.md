@@ -106,41 +106,69 @@ myArray DWORD 120 DUP(?)
 ## 문제 8  
 **Q: Declare an array of byte and initialize it to the first 5 letters of the alphabet.**  
 **A:**
+```asm
+.data
+array BYTE "ABCDE"
+```
 
 ---
 ## 문제 9  
 **Q: Declare a 32-bit signed integer variable and initialize it with the smallest possible negative decimal value. (Hint: Refer to integer ranges in Chapter 1.)**  
 **A:**
+```asm
+.data
+val2 SDWORD −2147483648
+```
 
 ---
 ## 문제 10  
 **Q: Declare an unsigned 16-bit integer variable named wArray that uses three initializers.**  
 **A:**
+```asm
+.data
+wArray WORD 1234h, 5678h, 9876h
+```
 
 ---
 ## 문제 11    
 **Q: Declare a string variable containing the name of your favorite color. Initialize it as a nullterminated string.**  
 **A:**
+```asm
+.data
+favColor BYTE "CYAN", 0
+```
 
 ---
 ## 문제 12  
 **Q: Declare an uninitialized array of 50 signed doublewords named dArray.**  
 **A:**
+```asm
+.data
+dArray SDWORD 50 DUP(?)
+```
 
 ---
 ## 문제 13  
 **Q: Declare a string variable containing the word “TEST” repeated 500 times.**  
 **A:**
+```asm
+.data
+msg BYTE 500 DUP("TEST"), "$"
+```
 
 ---
 ## 문제 14  
 **Q: Declare an array of 20 unsigned bytes named bArray and initialize all elements to zero.**  
 **A:**
+```asm
+.data
+bArray BYTE 20 DUP(0)
+```
 
 ---
 ## 문제 15  
 **Q: Show the order of individual bytes in memory (lowest to highest) for the following doubleword variable:**  
  **val1 DWORD 87654321h**  
-**A:**
+**A:** 21h 43h 65h 87h  
 
 ---
