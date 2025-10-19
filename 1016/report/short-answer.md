@@ -11,7 +11,7 @@
  movsx edx,one             ; (a)
  movsx edx,two             ; (b)
 ```
-**A : **2진수에서 one의 MSB는 1이 되므로 F로 채우고, two의 MSB는 0이 되므로 0으로 채운다.  
+**A :** 2진수에서 one의 MSB는 1이 되므로 F로 채우고, two의 MSB는 0이 되므로 0으로 채운다.  
 (a) EDX = FFFF8002h  
 (b) EDX = 00004321h  
 
@@ -22,7 +22,7 @@
 mov  eax,1002FFFFh
 inc ax
 ```
-**A : **1을 더하는 명령어. FFFF에 1을 더하면 10000이 되고 오버플로우 된다. 해당 비트는 무시한다.  
+**A :** 1을 더하는 명령어. FFFF에 1을 더하면 10000이 되고 오버플로우 된다. 해당 비트는 무시한다.  
 EAX = 10020000h  
 
 ---
@@ -32,7 +32,7 @@ EAX = 10020000h
 mov  eax,30020000h
 dec  ax
 ```
-**A : **1을 빼는 명령어. 0000에 1을 빼면 FFFF로 언더플로우 된다.   
+**A :** 1을 빼는 명령어. 0000에 1을 빼면 FFFF로 언더플로우 된다.   
 EAX = 3002FFFFh  
 
 ---
@@ -42,7 +42,7 @@ EAX = 3002FFFFh
 mov  eax,1002FFFFh
 neg ax
 ```
-**A : **2의 보수로 부호를 바꾸는 명령어. FFFF(1111 1111 1111 1111)를 2의 보수 취하면 0001(0000 0000 0000 0001)이 된다.  
+**A :** 2의 보수로 부호를 바꾸는 명령어. FFFF(1111 1111 1111 1111)를 2의 보수 취하면 0001(0000 0000 0000 0001)이 된다.  
 EAX = 0001h   
 
 ---
@@ -52,7 +52,7 @@ EAX = 0001h
 mov  al,1
 add  al,3
 ```
-**A : **AL = 0000 0100    
+**A :** AL = 0000 0100    
 PF = 0  
 
 ---
@@ -62,7 +62,7 @@ PF = 0
 mov  eax,5
 sub  eax,6
 ```
-**A : **5-6 = -1, -1 = FFFFFFFFh  
+**A :** 5-6 = -1, -1 = FFFFFFFFh  
 EAX = FFFFFFFFh
 
 ---
@@ -72,7 +72,7 @@ EAX = FFFFFFFFh
 mov al,-1
 add  al,130
 ```
-**A : **-1 = 11111111b, 130 = 10000010b, -1 + 130 = 1 1000 0001 => OF = 1, AL = 1000 0001 = -127  
+**A :** -1 = 11111111b, 130 = 10000010b, -1 + 130 = 1 1000 0001 => OF = 1, AL = 1000 0001 = -127  
 부호있는 byte로 해석하면 값은 -127이고 OF가 세팅되면서 해당 값이 정상적이지 않을 수 있음을 나타냄  
 
 ---
@@ -81,7 +81,7 @@ add  al,130
 ```asm
 mov  rax,44445555h
 ```
-**A : **RAX = 0000000044445555h  
+**A :** RAX = 0000000044445555h  
 
 ---
 ## 문제 9  
@@ -93,7 +93,7 @@ dwordVal DWORD 84326732h
 mov  rax,0FFFFFFFF00000000h
 mov  rax,dwordVal
 ```
-**A : **RAX = 0FFFFFFFF84326732h  
+**A :** RAX = 0FFFFFFFF84326732h  
 
 ---
 ## 문제 10  
@@ -106,7 +106,7 @@ mov  ax,3
 mov  WORD PTR dVal+2,ax    
 mov  eax,dVal
 ```
-**A : **dVal = [78][56][34][12], ax = [03][00] => dVal = [78][56][03][00]  
+**A :** dVal = [78][56][34][12], ax = [03][00] => dVal = [78][56][03][00]  
 EAX = 00035678h  
 
 ---
@@ -122,27 +122,27 @@ add  ax,3
 mov  WORD PTR dVal,ax
 mov  eax,dVal
 ```
-**A : **EAX = 12341237h    
+**A :** EAX = 12341237h    
 dVal = [78][56][34][12] => ax = [34][12] => ax = [37][12]  
 => dVal = [37][12][34][12] => EAX = [37][12][34][12]  
 
 ---
 ## 문제 12  
 **Q : (Yes/No): Is it possible to set the Overflow flag if you add a positive integer to a negative integer?**  
-**A : **Yes  
+**A :** Yes  
 7번 문제가 그렇다.  
 
 ---
 ## 문제 13  
 **Q : (Yes/No): Will the Overflow flag be set if you add a negative integer to a negative integer and produce a positive result?**  
-**A : **YES  
+**A :** YES  
 음수와 음수를 더하면 양수가 될 수 없다.  
 양수값이 나왔다면 결과가 너무 커져 이상한 값이 나오는 것이고, OF가 세팅된다.  
 
 ---
 ## 문제 14  
 **Q : (Yes/No): Is it possible for the NEG instruction to set the Overflow flag?**  
-**A : **YES  
+**A :** YES  
 ```asm
 mov al, -128 
 neg al
@@ -159,7 +159,7 @@ var2 WORD 1000h,2000h,3000h,4000h
 var3 SWORD -16,-42
 var4 DWORD 1,2,3,4,5
 ```
-**A : **No  
+**A :** No  
 Sign 플래그는 MSB에 따라서 세팅된다. MSB가 1이여야 1로 세팅되는데, Zero 플래그는 모든 비트가 0이여야 세팅된다.  
 즉 불가능하다.  
 
@@ -176,7 +176,7 @@ f. movzx var2,al
 g, mov   ds, ax
 h. mov   ds, 1000h
 ```
-**A : **  
+**A :**  
 a = **No**, 명령어 변수명에 ? 안됨  
 b = **Yes**  
 c = **No**, Size 다름  
@@ -193,7 +193,7 @@ h = **No**, 세그먼트 레지스터에 즉시값 사용 불가능
 mov al, var1              ; a.
 mov ah, [var1+3]          ; b.
 ```
-**A : **a. FCh, b. 01h  
+**A :** a. FCh, b. 01h  
 
 ---
 ## 문제 18  
@@ -204,7 +204,7 @@ mov ax, [var2+4]      ; b.
 mov ax, var3          ; c.
 mov ax, [var3-2]      ; d.
 ```
-**A : **a. 1000h, b. 3000h, c. FFF0h, d. 4000h    
+**A :** a. 1000h, b. 3000h, c. FFF0h, d. 4000h    
 
 ---
 ## 문제 19  
@@ -215,7 +215,7 @@ movzx edx, var2        ; b.
 mov   edx, [var4+4]    ; c.
 movsx edx, var1        ; d.
 ```
-**A : **a. 00000001h, b. 00001000h, c. 00000002h, d. FFFFFFFCh    
+**A :** a. 00000001h, b. 00001000h, c. 00000002h, d. FFFFFFFCh    
 
 ---
 
