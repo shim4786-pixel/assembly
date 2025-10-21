@@ -159,7 +159,44 @@ END main
 **Q : Write a program that uses a loop to calculate the first seven values of the Fibonacci number sequence, described by the following formula: Fib(1) = 1, Fib(2) = 1, Fib(n) = Fib(n – 1) + Fib(n – 2).**  
 **A :**  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+.data
+	fib DWORD 7 DUP(?)
+
+.code
+main PROC
+	mov DWORD PTR fib, 1
+	mov DWORD PTR fib+4, 1
+
+	mov ecx, 5
+	mov esi, OFFSET fib
+
+	calc_fib_loop:
+		mov eax, [esi]
+		add eax, [esi+4]
+		mov [esi+8], eax
+		add esi, 4
+		loop calc_fib_loop
+
+	mov ecx, 7
+	mov esi, OFFSET fib
+
+	print_fib_loop:
+		mov eax, [esi]
+		call WriteDec
+		mov al, ' '
+		call WriteChar
+		add esi, 4
+		loop print_fib_loop
+
+	exit
+main ENDP
+
+END main
 ```
 
 ---
@@ -167,7 +204,44 @@ END main
 **Q : Use a loop with indirect or indexed addressing to reverse the elements of an integer array in place. Do not copy the elements to any other array. Use the SIZEOF, TYPE, and LENGTHOF operators to make the program as flexible as possible if the array size and type should be changed in the future.**  
 **A :**  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+.data
+	myArray DWORD 1, 2, 3, 4, 5
+
+.code
+main PROC
+	mov esi, OFFSET myArray
+	mov edi, OFFSET myArray + SIZEOF myArray - TYPE myArray
+	mov ecx, LENGTHOF myArray/2
+
+	reverseLoop:
+		mov eax, [esi]
+		mov ebx, [edi]
+		mov [esi], ebx
+		mov [edi], eax
+		add esi, TYPE myArray
+		sub edi, TYPE myArray
+		loop reverseLoop
+	
+	mov ecx, LENGTHOF myArray
+	mov esi, OFFSET myArray
+
+	print_loop:
+	    mov eax, [esi]
+		call WriteDec
+		mov al, ' '
+		call WriteChar
+		add esi, TYPE myArray
+		loop print_loop
+
+	exit
+main ENDP
+
+END main
 ```
 
 ---
@@ -179,7 +253,41 @@ target BYTE SIZEOF source DUP('#')
 ```
 **A :**  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+.data
+	source BYTE "This is the source string.", 0
+	target BYTE SIZEOF source DUP('#')
+
+.code
+main PROC
+	mov ecx, LENGTHOF source - 1 ; 마지막 널 제외
+	
+	mov esi, OFFSET source      
+	add esi, (LENGTHOF source - 2) * TYPE source ; source의 마지막 문자로 이동
+	
+	mov edi, OFFSET target ; target의 시작 주소로 이동
+
+	reverse_loop:
+	    mov al, [esi]
+		mov [edi], al
+		sub esi, TYPE source
+		add edi, TYPE target
+		loop reverse_loop
+
+	mov BYTE PTR [edi], 0 ; 널 종료 문자 추가
+
+	mov edx, OFFSET target
+	call WriteString
+	call Crlf
+
+	exit
+main ENDP
+
+END main
 ```
 
 ---
@@ -187,7 +295,48 @@ target BYTE SIZEOF source DUP('#')
 **Q : Using a loop and indexed addressing, write code that rotates the members of a 32-bit integer array forward one position. The value at the end of the array must wrap around to the first position. For example, the array [10,20,30,40] would be transformed into [40,10,20,30].**  
 **A :**  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+.data
+	myArray DWORD 10, 20, 30, 40
+
+.code
+main PROC
+	; 마지막 원소를 EAX 레지스터에 로드
+	mov eax, [myArray + (LENGTHOF myArray - 1) * TYPE myArray]
+
+	; 반복 횟수는 배열 길이 - 1
+	mov ecx, LENGTHOF myArray - 1
+
+	; ESI = 마지막 원소 주소
+	mov esi, OFFSET myArray
+	add esi, (LENGTHOF myArray - 1) * TYPE myArray
+
+	shift_loop:
+		mov edx, [esi - TYPE myArray] ; 이전 원소 로드
+		mov [esi], edx                 ; 현재 위치에 이전 원소 저장
+		sub esi, TYPE myArray          ; 다음 원소로 이동(왼쪽으로)
+		loop shift_loop
+	mov [myArray], eax
+
+	mov ecx, LENGTHOF myArray
+	mov esi, OFFSET myArray
+
+	print_loop:
+	    mov eax, [esi]
+		call WriteDec
+		mov al,' '
+		call WriteChar
+		add esi, TYPE myArray
+		loop print_loop
+
+	exit
+main ENDP
+
+END main
 ```
 
 ---
