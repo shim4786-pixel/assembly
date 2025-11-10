@@ -6,7 +6,7 @@
 mov  bx,0FFFFh
 and  bx,6Bh
 ```
-**A :**
+**A :** BX = 006Bh  
 
 ---
 ## 문제 2  
@@ -15,7 +15,7 @@ and  bx,6Bh
 mov  bx,91BAh
 and  bx,92h
 ```
-**A :**
+**A :** BX = 9102h  
 
 ---
 ## 문제 3  
@@ -24,7 +24,7 @@ and  bx,92h
 mov  bx,0649Bh
 or   bx,3Ah
 ```
-**A :**
+**A :** BX = 64BBh
 
 ---
 ## 문제 4  
@@ -33,7 +33,7 @@ or   bx,3Ah
 mov  bx,029D6h
 xor  bx,8181h
 ```
-**A :**
+**A :** BX = A857h
 
 ---
 ## 문제 5  
