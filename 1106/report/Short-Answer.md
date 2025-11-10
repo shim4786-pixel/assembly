@@ -15,7 +15,7 @@ and  bx,6Bh
 mov  bx,91BAh
 and  bx,92h
 ```
-**A :** BX = 9102h  
+**A :** BX = 0092h   
 
 ---
 ## 문제 3  
@@ -24,7 +24,7 @@ and  bx,92h
 mov  bx,0649Bh
 or   bx,3Ah
 ```
-**A :** BX = 64BBh
+**A :** BX = 64BBh  
 
 ---
 ## 문제 4  
@@ -33,7 +33,7 @@ or   bx,3Ah
 mov  bx,029D6h
 xor  bx,8181h
 ```
-**A :** BX = A857h
+**A :** BX = A857h  
 
 ---
 ## 문제 5  
@@ -42,7 +42,7 @@ xor  bx,8181h
 mov  ebx,0AFAF649Bh
 or   ebx,3A219604h
 ```
-**A :**
+**A :** EBX = 0BFAFF69Fh  
 
 ---
 ## 문제 6  
@@ -51,7 +51,7 @@ or   ebx,3A219604h
 mov  rbx,0AFAF649Bh
 xor  rbx,0FFFFFFFFh
 ```
-**A :**
+**A :** RBX = 0000000050509B64h  
 
 ---
 ## 문제 7  
@@ -66,7 +66,11 @@ or   al,61h              ; c.
 mov  al,94h
 xor  al,37h              ; d.
 ```
-**A :**
+**A :**  
+a. 00101101b  
+b. 01001000b  
+c. 01101111b  
+d. 10100011b  
 
 ---
 ## 문제 8  
@@ -81,7 +85,11 @@ or   al,35h           ; c.
 mov  al,72h
 xor  al,0DCh          ; d.
 ```
-**A :**
+**A :**  
+a. 85h  
+b. 34h  
+c. 0BFh  
+d. 0AEh  
 
 ---
 ## 문제 9  
@@ -94,12 +102,15 @@ cmp  al,00000101b       ; b. CF=   ZF=   SF=
 mov  al,00000101b
 cmp  al,00000111b       ; c. CF=   ZF=   SF=
 ```
-**A :**
+**A :**  
+a. CF = 0, ZF = 0, SF = 0  
+b. CF = 0, ZF = 0, SF = 0  
+c. CF = 1, ZF =0 , SF = 1  
 
 ---
 ## 문제 10  
 **Q : Which conditional jump instruction executes a branch based on the contents of ECX?**  
-**A :**
+**A :** LOOP, LOOPE, LOOPNE, LOOPZ, LOOPNZ  
 
 ---
 ## 문제 11  
