@@ -105,7 +105,7 @@ cmp  al,00000111b       ; c. CF=   ZF=   SF=
 **A :**  
 a. CF = 0, ZF = 0, SF = 0  
 b. CF = 0, ZF = 0, SF = 0  
-c. CF = 1, ZF =0 , SF = 1  
+c. CF = 1, ZF = 0, SF = 1  
 
 ---
 ## 문제 10  
@@ -115,7 +115,7 @@ c. CF = 1, ZF =0 , SF = 1
 ---
 ## 문제 11  
 **Q : How are JA and JNBE affected by the Zero and Carry flags?**  
-**A :**
+**A :** JA와 JNBE는 같은 명령어로 Zero=0이고, Carry=0일 때 점프한다.  
 
 ---
 ## 문제 12  
@@ -128,7 +128,9 @@ c. CF = 1, ZF =0 , SF = 1
     mov  edx,0
 L1:
 ```
-**A :**
+**A :** cmp에서 Carry가 발생, 캐리 플래그가 세팅되므로 JL의 조건을 만족하여 L1으로 점프한다.  
+뒤의 mov 명령어는 실행되지 않는다.  
+EDX = 0000 0000 0000 0001b
 
 ---
 ## 문제 13  
