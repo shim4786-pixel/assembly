@@ -110,7 +110,7 @@ c. CF = 1, ZF = 0, SF = 1
 ---
 ## 문제 10  
 **Q : Which conditional jump instruction executes a branch based on the contents of ECX?**  
-**A :** LOOP, LOOPE, LOOPNE, LOOPZ, LOOPNZ  
+**A :** JECXZ  
 
 ---
 ## 문제 11  
