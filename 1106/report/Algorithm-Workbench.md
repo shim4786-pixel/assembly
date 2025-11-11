@@ -159,20 +159,20 @@ begin:
    jng ENDwhile
    cmp N, 3
    jnz L1
-   jmp NOP
+   jmp ELSE
 L1:
    cmp N, A
    jl YAP
    cmp N, B
    jg YAP
-   jmp NOP
+   jmp ELSE
 YAP:
    sub N, 2
    jmp begin
-NOP:
+ELSE:
    sub N, 1
    jmp begin  
-ENDwhle:
+ENDwhile:
 ```
 
 ---
