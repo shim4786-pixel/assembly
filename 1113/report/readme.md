@@ -1,5 +1,9 @@
 reference
->
+>Chat GPT  
+>Cursor AI  
+>blog.naver.com/heobk11- / 어셈블리 언어  
+>intelligentcm.tistory.com/category/Assembly  
+>Assembly Language for x86 processors 7th Edition  
 ---
 
 ---
