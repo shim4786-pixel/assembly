@@ -79,10 +79,13 @@ LOCAL myArray[20]:DWORD
 
 ---
 ## 문제 8  
-**Q : Create a procedure named SetColor that receives two stack parameters: forecolor and backcolor, and calls the SetTextColor procedure from the Irvine32 library. **  
+**Q : Create a procedure named SetColor that receives two stack parameters: forecolor and backcolor, and calls the SetTextColor procedure from the Irvine32 library.**  
 **A :**
 ```asm
-
+SetColor PROC forecolor:BYTE, backcolor:BYTE
+  INVOKE SetTextColor, forecolor, backcolor
+  ret
+SetColor ENDP
 ```
 
 ---
