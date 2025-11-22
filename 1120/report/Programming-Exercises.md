@@ -688,7 +688,7 @@ Address 0012FF88 = 00006543
 ```
 **A :** 자신을 호출한 프로시저의 실행시간 스택에 32비트 매개변수, 16진수 주소 값을 출력하는 ShowParams 프로시저 작성.  
 해당 프로시저의 입력은 출력할 매개변수의 개수를 가리키는 정수 한 개. 최하위 주소부터 최상위 주소 순으로 출력.  
-[ebp]   = ShowParams의 ebp
+[ebp]   = ShowParams의 ebp  
 [ebp+4] = ShowParams의 복귀 주소  
 [ebp+8] = MySample이 호출했을 때 전달한 매개변수(Count)  
 [ebp+12]= MySample의 ebp  
