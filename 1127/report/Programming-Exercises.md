@@ -1,9 +1,64 @@
 # Programming Exercises 문제 풀이
 ## ★ 1. Improved Str_copy Procedure  
 **Q : The Str_copy procedure shown in this chapter does not limit the number of characters to be copied. Create a new version (named Str_copyN) that receives an additional input parameter indicating the maximum number of characters to be copied.**  
-**A :**
+**A :** 복사되는 문자 개수를 파라미터로 받는 Str_copyN 만들기(Str_copy를 따라)  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+Str_copyN PROTO, source:PTR BYTE, target:PTR BYTE, maxCount:DWORD
+
+.data
+    sourceStr1 BYTE "Hello Assembly World", 0
+    sourceStr2 BYTE "Short", 0
+
+    targetStr1 BYTE 50 DUP(?)
+    targetStr2 BYTE 50 DUP(?)
+
+    maxD DWORD 10
+
+.code
+main PROC
+    INVOKE Str_copyN, ADDR sourceStr1, ADDR targetStr1, maxD
+    mov edx, OFFSET targetStr1
+    call WriteString
+    call Crlf
+
+    INVOKE Str_copyN, ADDR sourceStr2, ADDR targetStr2, maxD
+    mov edx, OFFSET targetStr2
+    call WriteString
+    call Crlf
+    exit 
+main ENDP
+;--------------------------------------------------------
+Str_copyN PROC USES eax ecx esi edi,
+    source:PTR BYTE,
+    target:PTR BYTE,
+    maxCount:DWORD
+; 받은 파라미터 :
+;    source : 원본 문자열
+;    target : 복사할 목적지 문자열
+;    maxCount : 복사할 최대 문자 개수
+; source로부터 최대 maxCount만큼 문자를 복사하는 프로시저
+;--------------------------------------------------------
+    INVOKE Str_length, source
+    mov ecx, eax
+    mov edx, maxCount
+
+    cmp ecx, edx    ; ecx <= maxCount ?
+    jbe SizeOK      ; 문자열의 길이가 더 짧거나 같으면 그대로 사용
+    mov ecx, edx    ; 더 길다면 maxCount 까지만 복사
+SizeOK:
+    mov esi, source
+    mov edi, target
+    cld
+    rep movsb
+    mov BYTE PTR[edi], 0
+    ret 12
+Str_copyN ENDP
+END main
 ```
 
 ---
@@ -16,9 +71,50 @@ sourceStr BYTE "FGH",0
 .code
 INVOKE Str_concat, ADDR targetStr, ADDR sourceStr
 ```
-**A :**
+**A :** 충분한 크기의 target 문자열 뒤에 source 문자열을 이어붙이는 프로시저 Str_concat  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+Str_concat PROTO, pTarget:PTR BYTE, pSource:PTR BYTE
+
+.data
+    targetStr BYTE "ABCDE", 10 DUP(0)
+    sourceStr BYTE "FGH", 0
+
+.code
+main PROC
+    INVOKE Str_concat, ADDR targetStr, ADDR sourceStr
+    mov edx, OFFSET targetStr
+    call WriteString
+    call Crlf
+    exit 
+main ENDP
+;---------------------------------------------------------
+Str_concat PROC USES eax ecx esi edi,
+    pTarget:PTR BYTE,
+    pSource:PTR BYTE
+; target 문자열 끝에 source 문자열을 이어 붙이는 프로시저
+; 받은 파라미터 :
+;   pTarget = 충분한 공간을 가진 문자열
+;   pSource = pTarget 뒤에 이어붙일 문자열
+;---------------------------------------------------------
+    INVOKE Str_length, pTarget
+    mov edi, pTarget
+    add edi, eax    ; target 끝위치로 이동
+
+    INVOKE Str_length, pSource
+    mov ecx, eax
+    inc ecx         ; 널 문자 포함하여 source 길이만큼 복사준비
+
+    mov esi, pSource
+    cld
+    rep movsb
+    ret 8
+Str_concat ENDP
+END main
 ```
 
 ---
@@ -30,9 +126,56 @@ target BYTE "abcxxxxdefghijklmop",0
 .code
 INVOKE Str_remove, ADDR [target+3], 4
 ```
-**A :**
+**A :** 문자열에서 n개의 문자를 제거하는 Str_remove 프로시저  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+Str_remove PROTO, pStart:PTR BYTE, count:DWORD
+
+.data
+    target BYTE "abcxxxxdefghijklmop", 0
+    msg BYTE "변경 후 => ", 0
+.code
+main PROC
+    mov edx, OFFSET target
+    call WriteString
+    call Crlf
+    INVOKE Str_remove, ADDR target+3, 4
+    mov edx, OFFSET msg
+    call WriteString
+    mov edx, OFFSET target
+    call WriteString
+    call Crlf
+    exit 
+main ENDP
+;-------------------------------------------------------
+Str_remove PROC USES eax ecx esi edi,
+    pStart:PTR BYTE,
+    count:DWORD
+; target에서 주어진 위치의 문자를 count개 삭제하는 프로시저
+; 받은 파라미터 :
+;   pStart = 삭제할 문자의 첫 위치
+;   count = 삭제할 문자의 개수
+; 반환값 : 없음 (삭제 후 이어붙인 문자열 target)
+;-------------------------------------------------------
+    mov esi, pStart
+    mov eax, count
+    add esi, eax        ; ESI = pStart + count
+
+    INVOKE Str_length, esi
+    mov ecx, eax
+    inc ecx             ; null 문자를 포함한 남은 문자열
+    
+    mov edi, pStart
+    cld
+    rep movsb           ; count만큼 끌어당겨서 작성
+
+    ret 8
+Str_remove ENDP
+END main
 ```
 
 ---
@@ -48,9 +191,87 @@ INVOKE Str_find, ADDR source, ADDR target
 jnz notFound
 mov pos,eax                      ; store the position value
 ```
-**A :**
+**A :** target안에서 source 문자열이 처음으로 나타나는 곳을 찾아 그 위치를 반환하는 프로시저  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+Str_find PROTO, pSource:PTR BYTE, pTarget:PTR BYTE
+
+.data
+    target BYTE "123ABC342432", 0
+    source BYTE "ABC", 0
+    pos DWORD ?
+    msgF BYTE "찾았습니다. 주소는 : ", 0
+    msgNF BYTE "찾지 못했습니다.", 0
+.code
+main PROC
+    INVOKE Str_find, ADDR source, ADDR target
+    jnz NFound
+FoundS:
+    mov pos, eax
+    mov edx, OFFSET msgF
+    call WriteString
+    call WriteHex
+    jmp done
+NFound:
+    mov edx, OFFSET msgNF
+    call WriteString   
+done:
+    call Crlf
+    exit
+main ENDP
+;-------------------------------------------------------
+Str_find PROC USES esi edi ecx,
+    pSource:PTR BYTE,
+    pTarget:PTR BYTE
+; 받은 파라미터 :
+;   pTarget = 탐색할 문자열
+;   pSource = 검색어가 담긴 문자열
+; 반환값 :
+;   찾으면 ZF = 1, EAX = 찾은 문자열의 주소
+;   못찾으면 ZF = 0, EAX = 정의되지 않음
+;-------------------------------------------------------
+    mov esi, pSource
+    mov edi, pTarget
+SearchLoop:
+    mov al, [edi]
+    cmp al, 0
+    je NotFound     ; target이 끝났으면 탐색 실패
+
+    mov al, [edi]
+    mov dl, [esi]
+    cmp al, dl
+    jne NextChar    ; 첫 글자가 불일치하면 다음 문자로
+
+    push edi
+    push esi        ; 일치하면 일치테스트 시작
+    INVOKE Str_length, esi
+    mov ecx, eax
+
+    pop esi
+    mov ebx, esi    ; 불일치를 대비해 source 시작값 저장
+    pop edi
+    repe cmpsb      ; source 와 target 비교
+    jecxz Found     ; ecx == 0 이라면 전체 일치
+
+    mov esi, ebx
+NextChar:
+    inc edi         ; 다음 문자로 이동
+    jmp SearchLoop
+Found:
+    INVOKE Str_length, pSource
+    sub edi, eax    ; edi는 비교 후 +1, 시작 위치는 edi - pSource length임
+    mov eax, edi    ; eax에는 검색어의 시작 주소값
+    cmp eax, eax    ; ZF = 1
+    ret 8
+NotFound:
+    cmp eax, 0      ; ZF = 0
+    ret 8   
+Str_find ENDP
+END main
 ```
 
 ---
@@ -65,9 +286,66 @@ jnz notFound
 ```
 **In Figure 9-5, after calling Str_nextWord, EAX points to the character following the position where the comma was found (and replaced). **  
 <img width="446" height="144" alt="image" src="https://github.com/user-attachments/assets/a03a1245-6dd8-4ab8-be12-91f91d75f1cf" />  
-**A :**
+**A :** 문자열 내 분리 문자를 찾아 널 문자로 바꾸고 뒤를 반환하는 프로시저  
 ```asm
+.386
+.MODEL FLAT, STDCALL
+.STACK 4096
+include Irvine32.inc
 
+Str_nextWord PROTO, pStr:PTR BYTE, delim:BYTE
+
+.data
+    target BYTE "Johnson,Calvin", 0
+    msgF BYTE "분리 문자 발견", 0
+    msgNF BYTE " 분리 문자 미발견", 0
+.code
+main PROC
+    INVOKE Str_nextWord, ADDR target, ','
+    jnz NFound
+FoundS:
+    mov edx, OFFSET msgF
+    call WriteString
+    call Crlf
+    mov edx, eax
+    call WriteString
+    jmp done
+NFound:
+    mov edx, OFFSET msgNF
+    call WriteString
+done:
+    call Crlf
+    exit
+main ENDP
+;-------------------------------------------------------
+Str_nextWord PROC USES esi edi,
+    pStr:PTR BYTE,
+    delim:BYTE
+; 받은 파라미터 :
+;   pStr = 탐색할 문자열
+;   delim = 분리 확인 문자
+; 반환값 :
+;   찾으면 ZF = 1, EAX = 분리 문자의 다음 오프셋
+;   못찾으면 ZF = 0, EAX = 정의되지 않음
+;-------------------------------------------------------
+    mov esi, pStr
+    mov al, delim
+    mov ecx, 0FFFFFFFFh         ; 충분히 큰 값
+                                ; null 값을 만나면 멈추니 Str_length대신 사용가능
+
+    mov edi, esi
+    cld
+    repne scasb                 ; al(분리 문자)과 문자열 비교, 일치할 때까지
+    jz Found                    ; 찾았다면 Found로
+    cmp eax, 0                  ; 못 찾았으면 ZF = 0
+    ret 8
+Found:
+    lea eax, [edi-1+1]          ; 찾았다면 eax에 분리 문자 다음 주소 저장
+    mov BYTE PTR[edi-1], 0      ; 분리 문자 위치에는 널 문자 대입
+    cmp eax, eax                ; ZF = 1
+    ret 8
+Str_nextWord ENDP
+END main
 ```
 
 ---
